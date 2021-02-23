@@ -3,9 +3,11 @@
     Date: 2/22/2021
     File: mem.js
 */
+    let time = 0;
+    let timerStarted = false;
+    let timer = new Number;
 
 class MemGame {
-
     constructor(bDivId) {
         this.bDivId = bDivId;
         this.bDiv = document.getElementById(bDivId);
@@ -14,6 +16,7 @@ class MemGame {
     }
 
     mainMenu(){
+        document.getElementById("timer").innerHTML = "";
         this.bDiv.className = "";
         this.bDiv.innerHTML = `<h2>Choose Difficulty</h2>\n
                                 <form>\n
@@ -88,7 +91,7 @@ class MemGame {
     }
 
     genList() {
-        document.getElementById("timer").innerHTML = "Timer: 0";
+        document.getElementById("timer").innerHTML = `Timer: ${time}`;
         this.bDiv.innerHTML = "";
         for (let i = 0; i < this.list.length; i++) {
             let c = this.genCard(i);
@@ -109,6 +112,10 @@ class MemGame {
         if (this.card_id_1 == null) {
             this.card_id_1 = id;
             console.log("First: " + item.val);
+            if(timerStarted == false){
+                timerStarted = true;
+                timer = setInterval(this.startTimer, 1000);
+            }
             this.showCard(id, true);
             return;
         } else if (this.card_id_2 == null) {
@@ -125,6 +132,7 @@ class MemGame {
 
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
+                    clearInterval(timer);
                     alert("You Win!");
                     this.mainMenu();
                 }
@@ -150,5 +158,9 @@ class MemGame {
             txtEl.innerHTML = item.val;
         else
             txtEl.innerHTML = "?";
+    }
+
+    startTimer(){
+        document.getElementById("timer").innerHTML = `Timer: ${++time}`;
     }
 }
