@@ -16,17 +16,27 @@ class MemGame {
     }
 
     mainMenu(){
-        document.getElementById("timer").innerHTML = "";
+        document.getElementById("header2").innerHTML = "Choose Difficulty";
         this.bDiv.className = "";
-        this.bDiv.innerHTML = `<h2>Choose Difficulty</h2>\n
-                                <form>\n
+        this.bDiv.innerHTML = `<form>\n
                                 <input type="radio" id="easy" name="difficulty" value="easy">\n
                                 <label for="easy">Easy</lable><br>\n
                                 <input type="radio" id="medium" name="difficulty" value="medium">\n
                                 <label for="medium">Medium</lable><br>\n
                                 <input type="radio" id="hard" name="difficulty" value="hard">\n
                                 <label for="hard">Hard</lable><br>\n
-                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value)">Start Game</button>`;
+                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value)">Start Game</button>
+                                <button type="button" onclick="m1.highScore()">Highscore</button>`;
+    }
+
+    highScore(){
+        document.getElementById("header2").innerHTML = "Highscore:";
+        this.bDiv.className = "";
+        let score = localStorage.getItem("highscore");
+        if(score == null)
+            score = "N/A";
+        this.bDiv.innerHTML = `<p>\t${score}s</p>\n
+                                <button type="button" onclick="m1.mainMenu()">Main Menu</button>`;
     }
 
     startGame(difficulty) {
@@ -91,7 +101,7 @@ class MemGame {
     }
 
     genList() {
-        document.getElementById("timer").innerHTML = `Timer: ${time}`;
+        document.getElementById("header2").innerHTML = `Timer: ${time}`;
         this.bDiv.innerHTML = "";
         for (let i = 0; i < this.list.length; i++) {
             let c = this.genCard(i);
@@ -161,6 +171,6 @@ class MemGame {
     }
 
     startTimer(){
-        document.getElementById("timer").innerHTML = `Timer: ${++time}`;
+        document.getElementById("header2").innerHTML = `Timer: ${++time}s`;
     }
 }
