@@ -143,10 +143,10 @@ class MemGame {
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
                     clearInterval(timer);
-                    if(time > localStorage.getItem("highscore") && localStorage != null)
-                        localStorage.setItem("highscore", time);
+                    if(time > localStorage.getItem(`${this.difficulty}highscore`) && localStorage != null)
+                        localStorage.setItem(`${this.difficulty}highscore`, time);
                     else 
-                        localStorage.setItem("highscore", time);
+                        localStorage.setItem(`${this.difficulty}highscore`, time);
                     alert("You Win!");
                     this.mainMenu();
                 }
