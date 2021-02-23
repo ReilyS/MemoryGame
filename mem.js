@@ -88,6 +88,7 @@ class MemGame {
     }
 
     genList() {
+        document.getElementById("timer").innerHTML = "Timer: 0";
         this.bDiv.innerHTML = "";
         for (let i = 0; i < this.list.length; i++) {
             let c = this.genCard(i);
