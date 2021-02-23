@@ -48,7 +48,8 @@ class MemGame {
     }
 
     startGame(difficulty) {
-        console.log(difficulty);
+        time = 0;
+        timerStarted = false;
         switch(difficulty){
             case "easy":
                 this.bSize = 5;
@@ -154,9 +155,7 @@ class MemGame {
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
                     clearInterval(timer);
-                    if(time > localStorage.getItem(`${this.difficulty}highscore`) && localStorage != null)
-                        localStorage.setItem(`${this.difficulty}highscore`, time);
-                    else 
+                    if(time < localStorage.getItem(`${this.difficulty}highscore`) && localStorage.getItem(`${this.difficulty}highscore`) != null)
                         localStorage.setItem(`${this.difficulty}highscore`, time);
                     alert("You Win!");
                     this.mainMenu();
