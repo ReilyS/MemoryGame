@@ -44,12 +44,15 @@ class MemGame {
         switch(difficulty){
             case "easy":
                 this.bSize = 5;
+                this.difficulty = "easy";
                 break;
             case "medium":
                 this.bSize = 10;
+                this.difficulty = "medium";
                 break;
             case "hard":
                 this.bSize = 15;
+                this.difficulty = "hard";
                 break;
             default:
                 return;
