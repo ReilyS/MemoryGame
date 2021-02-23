@@ -3,18 +3,44 @@
     Date: 2/22/2021
     File: mem.js
 */
+
 class MemGame {
 
-    constructor(bDivId, bSize) {
+    constructor(bDivId) {
         this.bDivId = bDivId;
         this.bDiv = document.getElementById(bDivId);
         this.bDiv.innerHTML = "<h1>Loading...</h1>";
-        this.bSize = bSize;
-        
-        this.startGame();
+        this.mainMenu();
     }
 
-    startGame() {
+    mainMenu(){
+        this.bDiv.className = "";
+        this.bDiv.innerHTML = `<h2>Choose Difficulty</h2>\n
+                                <form>\n
+                                <input type="radio" id="easy" name="difficulty" value="easy">\n
+                                <label for="easy">Easy</lable><br>\n
+                                <input type="radio" id="medium" name="difficulty" value="medium">\n
+                                <label for="medium">Medium</lable><br>\n
+                                <input type="radio" id="hard" name="difficulty" value="hard">\n
+                                <label for="hard">Hard</lable><br>\n
+                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value)">Start Game</button>`;
+    }
+
+    startGame(difficulty) {
+        console.log(difficulty);
+        switch(difficulty){
+            case "easy":
+                this.bSize = 5;
+                break;
+            case "medium":
+                this.bSize = 10;
+                break;
+            case "hard":
+                this.bSize = 15;
+                break;
+            default:
+                return;
+        }
         this.makeList(this.bSize);
         this.shuffle();
         this.genList();
@@ -51,6 +77,7 @@ class MemGame {
     }
 
     genCard(id) {
+        this.bDiv.classList.add("board");
         let card = document.createElement("div");
         card.classList.add("card");
 
@@ -98,7 +125,7 @@ class MemGame {
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
                     alert("You Win!");
-                    this.startGame();
+                    this.mainMenu();
                 }
             }, 1000);
         } else {
