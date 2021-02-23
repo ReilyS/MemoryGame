@@ -1,0 +1,26 @@
+/*
+    Name: Reily Stanford
+    Date: 2/22/2021
+    File: mem.css
+*/
+.card {
+    width: 128px;
+    height: 128px;
+    border: 1px solid gray;
+    font-size: 3em;
+    text-align: center;
+    margin: 2px;
+    box-sizing: border-box;
+    overflow: hidden;
+    border: 1px solid gray;
+}
+
+.board {
+    border: 2px solid black;
+    display: flex;
+    flex-wrap: wrap;
+    box-sizing: border-box;
+    margin: 10px;
+    /* Changed the width of the board to better fit the cards */
+    width: 665px;
+}
