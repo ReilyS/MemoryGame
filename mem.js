@@ -32,10 +32,18 @@ class MemGame {
     highScore(){
         document.getElementById("header2").innerHTML = "Highscore:";
         this.bDiv.className = "";
-        let score = localStorage.getItem("highscore");
-        if(score == null)
-            score = "N/A";
-        this.bDiv.innerHTML = `<p>\t${score}s</p>\n
+        let easy = localStorage.getItem("easyhighscore");
+        let medium = localStorage.getItem("mediumhighscore");
+        let hard = localStorage.getItem("hardhighscore");
+        if(easy == null)
+            easy = "N/A";
+        if(medium == null)
+            medium = "N/A";
+        if(hard == null)
+            hard = "N/A";   
+        this.bDiv.innerHTML = `<p>Easy: ${easy}s</p>\n
+                                <p>Medium: ${medium}s</p>\n
+                                <p>Hard: ${hard}s</p>\n
                                 <button type="button" onclick="m1.mainMenu()">Main Menu</button>`;
     }
 
