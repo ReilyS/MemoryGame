@@ -24,3 +24,18 @@
     /* Changed the width of the board to better fit the cards */
     width: 665px;
 }
+
+img {
+    width: 125px;
+    height: 125px;
+}
+
+.open {
+    transition: transform 250ms ease-out;
+    transform: rotateY(0deg);
+}
+
+.closed {
+    transform: rotateY(90deg);
+    transition: transform 250ms ease-in;
+}

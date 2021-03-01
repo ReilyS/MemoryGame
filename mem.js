@@ -14,8 +14,6 @@ class MemGame {
         this.bDiv.innerHTML = "<h1>Loading...</h1>";
         this.bSize = bSize;
         
-        this.initImages();
-
         this.mainMenu();
     }
 
@@ -30,7 +28,7 @@ class MemGame {
                                 <label for="medium">Medium</lable><br>\n
                                 <input type="radio" id="hard" name="difficulty" value="hard">\n
                                 <label for="hard">Hard</lable><br>\n
-                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value)">Start Game</button>`;
+                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value), m1.initImages()">Start Game</button>`;
     }
 
     startGame(difficulty) {
@@ -164,6 +162,16 @@ class MemGame {
     showCard(id, showFlag) {
         let item = this.list[id];
         let itemEl = item.el;
+        itemEl.classList.add("closed");
+
+        setTimeout(() => {
+            this.showCard1(id, showFlag);
+        }, 250);
+    }
+
+    showCard1(id, showFlag) {
+        let item = this.list[id];
+        let itemEl = item.el;
         let txtEl = itemEl.firstChild;
         item.showFlag = showFlag;
         if (this.TXT_MODE) {
@@ -178,6 +186,10 @@ class MemGame {
             else 
                 txtEl.src = this.card_back;
         }
+
+        console.log("HI");
+        itemEl.classList.remove("closed");
+        itemEl.classList.add("open");
     }
 
     startTimer(){
