@@ -18,10 +18,9 @@ class MemGame {
     }
 
     mainMenu(){
-        document.getElementById("timer").innerHTML = "";
+        document.getElementById("header2").innerHTML = "Choose Difficulty";
         this.bDiv.className = "";
-        this.bDiv.innerHTML = `<h2>Choose Difficulty</h2>\n
-                                <form>\n
+        this.bDiv.innerHTML = `<form>\n
                                 <input type="radio" id="easy" name="difficulty" value="easy">\n
                                 <label for="easy">Easy</lable><br>\n
                                 <input type="radio" id="medium" name="difficulty" value="medium">\n
@@ -32,16 +31,20 @@ class MemGame {
     }
 
     startGame(difficulty) {
-        console.log(difficulty);
+        time = 0;
+        timerStarted = false;
         switch(difficulty){
             case "easy":
                 this.bSize = 5;
+                this.difficulty = "easy";
                 break;
             case "medium":
                 this.bSize = 10;
+                this.difficulty = "medium";
                 break;
             case "hard":
                 this.bSize = 15;
+                this.difficulty = "hard";
                 break;
             default:
                 return;
@@ -97,7 +100,7 @@ class MemGame {
     }
 
     genList() {
-        document.getElementById("timer").innerHTML = `Timer: ${time}`;
+        document.getElementById("header2").innerHTML = `Timer: ${time}`;
         this.bDiv.innerHTML = "";
         for (let i = 0; i < this.list.length; i++) {
             let c = this.genCard(i);
@@ -139,10 +142,8 @@ class MemGame {
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
                     clearInterval(timer);
-                    if(time > localStorage.getItem("highscore") && localStorage != null)
-                        localStorage.setItem("highscore", time);
-                    else 
-                        localStorage.setItem("highscore", time);
+                    if(time < localStorage.getItem(`${this.difficulty}highscore`) || localStorage.getItem(`${this.difficulty}highscore`) == null)
+                        localStorage.setItem(`${this.difficulty}highscore`, time);
                     alert("You Win!");
                     this.mainMenu();
                 }
@@ -193,7 +194,7 @@ class MemGame {
     }
 
     startTimer(){
-        document.getElementById("timer").innerHTML = `Timer: ${++time}`;
+        document.getElementById("header2").innerHTML = `Timer: ${++time}s`;
     }
 
     initImages() {
