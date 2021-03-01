@@ -8,10 +8,14 @@
     let timer = new Number;
 
 class MemGame {
-    constructor(bDivId) {
+    constructor(bDivId, bSize) {
         this.bDivId = bDivId;
         this.bDiv = document.getElementById(bDivId);
         this.bDiv.innerHTML = "<h1>Loading...</h1>";
+        this.bSize = bSize;
+        
+        this.initImages();
+
         this.mainMenu();
     }
 
@@ -84,7 +88,11 @@ class MemGame {
         let card = document.createElement("div");
         card.classList.add("card");
 
-        card.innerHTML = "<div>?</div>";
+        if (this.TXT_MODE)
+            card.innerHTML = "<div>?</div>";
+        else
+            card.innerHTML = "<img class='img' src'" + this.card_back + "' />";
+
         card.addEventListener("click", (e) => { this.click(id) } , false);
 
         return card;
@@ -158,13 +166,49 @@ class MemGame {
         let itemEl = item.el;
         let txtEl = itemEl.firstChild;
         item.showFlag = showFlag;
-        if (showFlag)
-            txtEl.innerHTML = item.val;
-        else
-            txtEl.innerHTML = "?";
+        if (this.TXT_MODE) {
+            if (showFlag)
+                txtEl.innerHTML = item.val;
+            else
+                txtEl.innerHTML = "?"; 
+        }
+        else {
+            if (showFlag)
+                txtEl.src = "./IMG/" + this.images[item.val - 1];
+            else 
+                txtEl.src = this.card_back;
+        }
     }
 
     startTimer(){
         document.getElementById("timer").innerHTML = `Timer: ${++time}`;
+    }
+
+    initImages() {
+        this.images = [];
+
+        this.images.push("370Z.jpg");
+        this.images.push("AE86.jpg");
+        this.images.push("CELICAGT4.jpg");
+        this.images.push("CIVIC.jpg");
+        this.images.push("E30.jpg");
+        this.images.push("EVO.jpg");
+        this.images.push("HELLCAT.jpg");
+        this.images.push("IMPREZA.jpg");
+        this.images.push("MR2.jpg");
+        this.images.push("NSX.jpg");
+        this.images.push("R32.jpg");
+        this.images.push("RX7.jpg");
+        this.images.push("S14.jpg");
+        this.images.push("SUPRA.jpg");
+        this.images.push("VIPER.jpg");
+
+        this.card_back = "./IMG/CAR.png"
+
+        let c = "";
+        for(let url of this.images) {
+            c += "<img src='./IMG/" + url + "' /><br>\r\n";
+        }
+        document.getElementById("IMG").innerHTML = c;
     }
 }
