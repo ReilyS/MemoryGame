@@ -13,7 +13,6 @@ class MemGame {
         this.bDiv = document.getElementById(bDivId);
         this.bDiv.innerHTML = "<h1>Loading...</h1>";
         this.bSize = bSize;
-        
         this.mainMenu();
     }
 
@@ -22,12 +21,12 @@ class MemGame {
         this.bDiv.className = "";
         this.bDiv.innerHTML = `<form>\n
                                 <input type="radio" id="easy" name="difficulty" value="easy">\n
-                                <label for="easy">Easy</lable><br>\n
+                                <label for="easy">Easy</label><br>\n
                                 <input type="radio" id="medium" name="difficulty" value="medium">\n
-                                <label for="medium">Medium</lable><br>\n
+                                <label for="medium">Medium</label><br>\n
                                 <input type="radio" id="hard" name="difficulty" value="hard">\n
-                                <label for="hard">Hard</lable><br>\n
-                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value), m1.initImages()">Start Game</button>
+                                <label for="hard">Hard</label><br>\n
+                                <button id="difficulty" type="button" onclick="m1.startGame(difficulty.value)">Start Game</button>
                                 <button type="button" onclick="m1.highScore()">Highscore</button>`;
     }
 
@@ -50,6 +49,7 @@ class MemGame {
     }
 
     startGame(difficulty) {
+        this.initImages();
         time = 0;
         timerStarted = false;
         switch(difficulty){
@@ -111,7 +111,7 @@ class MemGame {
         if (this.TXT_MODE)
             card.innerHTML = "<div>?</div>";
         else
-            card.innerHTML = "<img class='img' src'" + this.card_back + "' />";
+            card.innerHTML = "<img class='img' src='" + this.card_back + "' />";
 
         card.addEventListener("click", (e) => { this.click(id) } , false);
 
@@ -202,7 +202,7 @@ class MemGame {
         }
         else {
             if (showFlag)
-                txtEl.src = "./IMG/" + this.images[item.val - 1];
+                txtEl.src = "./pics/" + this.images[item.val - 1];
             else 
                 txtEl.src = this.card_back;
         }
@@ -235,12 +235,12 @@ class MemGame {
         this.images.push("SUPRA.jpg");
         this.images.push("VIPER.jpg");
 
-        this.card_back = "./IMG/CAR.png"
+        this.card_back = "./pics/CAR.png"
 
         let c = "";
         for(let url of this.images) {
-            c += "<img src='./IMG/" + url + "' /><br>\r\n";
+            c += "<img src='./pics/" + url + "' /><br>\r\n";
         }
-        document.getElementById("IMG").innerHTML = c;
+        document.getElementById("board1").innerHTML = c;
     }
 }
