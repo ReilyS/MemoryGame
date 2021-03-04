@@ -3,10 +3,14 @@
     Date: 3/1/2021
     File: mem.js
 */
+
+    //Created time variable that serve as counter variables for a timer that keeps track of how long the game is going
     let time = 0;
+    //Created a bool variable so that we can know if the timer has started or not
     let timerStarted = false;
     let timer = new Number;
 
+//Used the code from your video
 class MemGame {
     constructor(bDivId, bSize) {
         this.bDivId = bDivId;
@@ -16,6 +20,8 @@ class MemGame {
         this.mainMenu();
     }
 
+    //Creates a main menu window before the game is started and allows the user to choose between difficulties (which changes the amount of tiles on the screen).
+    //There is also a button that allows the user to see their highscores between different difficulties that is saved on local storage using the highScore function.
     mainMenu(){
         document.getElementById("header2").innerHTML = "Choose Difficulty";
         this.bDiv.className = "";
@@ -30,12 +36,14 @@ class MemGame {
                                 <button type="button" onclick="m1.highScore()">Highscore</button>`;
     }
 
+    //Function checks the local storage for the highscore values for each difficulty then displays it to the user
     highScore(){
         document.getElementById("header2").innerHTML = "Highscore:";
         this.bDiv.className = "";
         let easy = localStorage.getItem("easyhighscore");
         let medium = localStorage.getItem("mediumhighscore");
         let hard = localStorage.getItem("hardhighscore");
+        //If there aren't any highscores saved on local storage, it will display "N/A"
         if(easy == null)
             easy = "N/A";
         if(medium == null)
@@ -212,6 +220,7 @@ class MemGame {
         itemEl.classList.add("open");
     }
 
+    //Updates the user how long it's been since the first tile was flipped over in seconds
     startTimer(){
         document.getElementById("header2").innerHTML = `Timer: ${++time}s`;
     }
