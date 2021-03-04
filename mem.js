@@ -57,9 +57,14 @@ class MemGame {
     }
 
     startGame(difficulty) {
+        //Places images in cards on board
         this.initImages();
+        //Setting time to 0 since game is just starting
         time = 0;
+        //Marking the timer as not started
         timerStarted = false;
+        //Deciding how many cards should be placed as well as storing 
+        //the difficulty based on the user selected difficulty
         switch(difficulty){
             case "easy":
                 this.bSize = 5;
@@ -168,10 +173,14 @@ class MemGame {
 
             setTimeout(() => {
                 if (++this.matchedCount == this.count) {
+                    //Stopping the timer when the game is done
                     clearInterval(timer);
+                    //Updating the highscore in local storage if it is better than the previously 
+                    //stored score or there is no score for the current difficulty
                     if(time < localStorage.getItem(`${this.difficulty}highscore`) || localStorage.getItem(`${this.difficulty}highscore`) == null)
                         localStorage.setItem(`${this.difficulty}highscore`, time);
                     alert("You Win!");
+                    //Returning to main menu
                     this.mainMenu();
                 }
             }, 1000);
