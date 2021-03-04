@@ -3,14 +3,18 @@
     Date: 3/1/2021
     File: mem.css
 */
+
+/* Radio Button */
 input{
     margin: 0 .5rem .5rem .5rem;
 }
 
+/* Menu Buttons */
 button{
     margin-top: 1rem;
 }
 
+/* Card on Game Board */
 .card {
     width: 128px;
     height: 128px;
@@ -23,6 +27,7 @@ button{
     border: 1px solid gray;
 }
 
+/* Game Board */
 .board {
     user-select: none;
     border: 2px solid black;
@@ -34,6 +39,7 @@ button{
     width: 665px;
 }
 
+/* Images in the Cards */
 img {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
@@ -44,11 +50,13 @@ img {
     height: 125px;
 }
 
+/* Showing Card Face */
 .open {
     transition: transform 250ms ease-out;
     transform: rotateY(0deg);
 }
 
+/* Showing Card Back */
 .closed {
     transform: rotateY(90deg);
     transition: transform 250ms ease-in;
